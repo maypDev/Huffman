@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Codificación Huffman</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
+</head>
+<body>
+    <h1>Resultado de Codificación Huffman</h1>
+    <p>Mensaje original: {{ mensaje }}</p>
+    <p>Mensaje codificado: {{ encoded }}</p>
+
+    
+    <div class="container">
+        <h2>Tabla de Codificación Huffman</h2>
+        <table border="1">
+            <tr>
+                <th>Símbolo</th>
+                <th>Frecuencia Absoluta</th>
+                <th>Frecuencia Relativa</th>
+                <th>Código</th>
+            </tr>
+            {% for symbol in frecuencia_absoluta %}
+                <tr>
+                    <td>{{ symbol }}</td>
+                    <td>{{ frecuencia_absoluta[symbol] }}</td>
+                    <td>{{ symbols[symbol] }}</td>
+                    <td>{{ dictEncoder[symbol] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="card">
+        <div class="card2">
+            <!-- Información adicional -->
+            <h2>Información Adicional</h2>
+            <table border="1">
+                <tr>
+                    <th>Descripción</th>
+                    <th>Valor</th>
+                </tr>
+                {% for key, value in info_adicional.items() %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+      </div>
+    
+    
+    <button class="button type1" type="submit">
+        <p><a class="btn-txt" href="/">Volver</a></p>
+    </button>
+</body>
+</html>
