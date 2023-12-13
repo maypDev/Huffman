@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
 </head>
 <body>
-    <h1>Resultado de Codificación Huffman</h1>
-    <p>Mensaje original: {{ mensaje }}</p>
-    <p>Mensaje codificado: {{ encoded }}</p>
-
+    <div class="grid-container">
+    <div class="titulo"><h1>Resultado de Codificación Huffman</h1></div>
     
-    <div class="container">
+    
+    <div class="entrada"><p>Mensaje original: {{ mensaje }}</p></div>
+    
+    
+    <div class="salida"><p>Mensaje codificado: {{ encoded }}</p></div>
+    
+    
+    <div class="container tabla">
         <h2>Tabla de Codificación Huffman</h2>
         <table border="1">
             <tr>
@@ -31,7 +36,8 @@
             {% endfor %}
         </table>
     </div>
-    <div class="card">
+    <br>
+    <div class="card info">
         <div class="card2">
             <!-- Información adicional -->
             <h2>Información Adicional</h2>
@@ -50,9 +56,12 @@
         </div>
       </div>
     
-    
-    <button class="button type1" type="submit">
-        <p><a class="btn-txt" href="/">Volver</a></p>
-    </button>
+    <br>
+    <div class="regresar">
+        <button class="button type1" type="submit">
+            <p><a class="btn-txt" href="/">Volver</a></p>
+        </button>
+    </div>
+</div>    
 </body>
 </html>

@@ -1,38 +1,39 @@
 from flask import Flask, render_template, request
-app = Flask(__name__)
+app = Flask(__name__)  # Crea una instancia de la aplicación Flask
 
-class Node: # Declaración de variables para crear los nodos
-    # Properties
-    probability = 0.0  # Inicializamos
-    symbol = ""
-    encoding = ""
-    visited = False
-    parent = -1  # Longitud de 0 a -1
+class Node:  # Definición de la clase Node para representar nodos en el árbol de Huffman
+    # Propiedades de los nodos
+    probability = 0.0  # Probabilidad del símbolo
+    symbol = ""  # Símbolo del nodo
+    encoding = ""  # Codificación binaria del símbolo
+    visited = False  # Indica si el nodo ha sido visitado durante la construcción del árbol
+    parent = -1  # Índice del padre en la lista de nodos
 
-class Huffman: # Declaración de variables para la creación del árbol de Huffman
-    Tree = None  # Retornar árbol
-    Root = None  # Retornar raíz
-    Nodes = []  # Lista
-    probs = {}  # Bloque
-    dictEncoder = {}
+class Huffman:  # Definición de la clase Huffman para la creación del árbol de Huffman
+    Tree = None  # Árbol de Huffman resultante
+    Root = None  # Raíz del árbol
+    Nodes = []  # Lista de nodos en el árbol
+    probs = {}  # Diccionario que almacena las probabilidades de los símbolos
+    dictEncoder = {}  # Diccionario que almacena los códigos binarios de los símbolos
 
-    # Methods
+    # Métodos de la clase Huffman
     def __init__(self, symbols):
+        # Inicializa la instancia de Huffman con la lista de símbolos y sus probabilidades
         self.initNodes(symbols)
         self.buildTree()
         self.buildDictionary()
 
     def initNodes(self, probs):
+        # Inicializa los nodos del árbol con los símbolos y sus probabilidades
         for symbol in probs:
             node = Node()
             node.symbol = symbol
-            # Ajusta la probabilidad para garantizar códigos binarios más cortos
-            node.probability = probs[symbol] * 0.1
+            node.probability = probs[symbol] * 0.1  # Ajusta la probabilidad para códigos más cortos
             node.visited = False
             self.Nodes.append(node)
             self.probs[symbol] = probs[symbol]
 
-        # Asegúrate de incluir el espacio en el árbol de Huffman
+        # Asegura que el espacio esté incluido en el árbol de Huffman
         if ' ' not in self.probs:
             node = Node()
             node.symbol = ' '
@@ -221,8 +222,7 @@ def encode():
     info_adicional = {
         'numero_caracteres': len(mensaje),
         'fichero_inicial': len(mensaje)*8,  # Reemplaza con el nombre real del fichero
-        'fichero_compreso': 'nombre_del_fichero_compreso.txt',  # Reemplaza con el nombre real del fichero
-        'informacion_media': 'informacion_media.txt',  # Reemplaza con el nombre real del fichero
+        'fichero_compreso': len(frecuencia_absoluta)*8,  # Reemplaza con el nombre real del fichero
     }
 
     # Decodificar el mensaje
